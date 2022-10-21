@@ -1,14 +1,15 @@
+import { Alert } from "react-native";
 import api from "../api"
 
 export async function buscaUsuario(nomeUsuario){
     try {
-        const resultado = await api.get(`/users?login=${nomeUsuario}`);
+        const resultado = await api.get(`/users?email=${nomeUsuario}`);
         console.log('aqui', resultado.data)
         return  resultado.data;
     }
     catch (error){
         console.log(error)
-        return {}
+        return Alert.alert('Erro:  Usuário não encontrador')
     }
 }
 export async function pegaUsuarios(){
@@ -30,11 +31,26 @@ export async function criarUsuario(nome, email, login){
             email: email,
             login: login
         });
-        return 'sucesso'
+        return Alert.alert('Cliente cadastrado com sucesso')
     }
     catch (error){
-        console.log(error)
-        return 'erro'
+        console.log('erorrrr',error)
+        return Alert.alert('Erro: Email já cadastrado')
+    }
+}
+
+    export async function atualizaCliente(nome, email, login, id){
+        try {
+            await api.put(`/users/${id}`, {
+                name: nome,
+                email: email,
+                login: login
+            });
+            return Alert.alert('Cliente atualizado com sucesso')
+        }
+        catch (error){
+            console.log(error)
+            return Alert.alert('Não Atualizado')
+        }
     }
 
-}

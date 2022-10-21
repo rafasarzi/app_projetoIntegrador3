@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Alert, Picker } from 'react-native';
 import { EntradaTexto } from '../../componentes/EntradaTexto';
-import { criarUsuario } from '../../servicos/requisicoes/usuarios';
+import { criarUsuario, pegaUsuarios } from '../../servicos/requisicoes/usuarios';
 import estilos from '../Principal/estilos';
 
 export default function CriarCliente({ navigation }) {
@@ -13,26 +13,31 @@ export default function CriarCliente({ navigation }) {
 
     async function criar(){
         const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-        if (email === ''){
-            setMensagemError('Digite seu email')
-            setStatusError('email')
-            console.log('email', email)
-        }else if (!(emailRegex).test(email)) {
+        if (!(emailRegex).test(email)) {
             setMensagemError('Digite um email válido')
             setStatusError('email')
             console.log('email', email)
-        }
-        else if(nome ===''){
+        }else if (email === ''){
+            setMensagemError('Digite seu email')
+            setStatusError('email')
+            console.log('email', email)
+        }else if(nome ===''){
             setMensagemError('Digite seu nome')
             setStatusError('nome')
         }else if(login === ''){
             setMensagemError('Digite username')
             setStatusError('login')
-        }else{
+        }
+        // else if (pegaUsuarios(email === email)){
+        //     console.log('email', email);
+        //     setMensagemError('Email já cadastrado')
+        //     setStatusError('email')
+        // }
+        else{
              await criarUsuario(
                 nome,
                 email,
-                login
+                login,
             )
             setEmail('')
             setLogin('')

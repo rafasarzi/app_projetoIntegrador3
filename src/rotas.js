@@ -12,6 +12,7 @@ import Home from './paginas/Home';
 import Usuarios from './paginas/Clientes'
 import CriarCliente from './paginas/CriarCliente'
 import Login from './paginas/Login'
+import InfoCliente from './paginas/infoCliente';
 
 export default function Rotas() {
     return (
@@ -23,6 +24,7 @@ export default function Rotas() {
                 <Tab.Screen name="Principal" options={{ title: "Perfil" }} component={Principal} />
                 <Tab.Screen name="Repositorios" component={Repositorios} />
                 <Tab.Screen name="CriarCliente" options={{ title: "Criar Cliente" }} component={CriarCliente} />
+                <Tab.Screen name="InfoCliente" options={{ title: "Cliente Info" }} component={InfoCliente} />
                 <Tab.Screen name="InfoRepositorio" options={{ title: "Repositório Info" }} component={InfoRepositorio} />
                 <Tab.Screen name="CriarRepositorio" options={{ title: "Criar Repositório" }} component={CriarRepositorio} />
             </Tab.Navigator>

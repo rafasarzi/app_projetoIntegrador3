@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Text, View, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { pegaUsuarios } from '../../servicos/requisicoes/usuarios';
 import estilos from './estilos';
 import Repositorios from '../Repositorios';
+import InfoCliente from '../infoCliente';
 
 export default function Usuarios({ navigation }) {
     const [user, setUser] = useState([]);
@@ -16,21 +17,26 @@ export default function Usuarios({ navigation }) {
     },[estaNaTela])
 
     return (
+
+        <SafeAreaView >
         <ScrollView>
-        <View style={estilos.container}>
-                <Text style={estilos.textoNome}>{user.length} status criado</Text>
+                <Text style={estilos.textoNome}>{user.length} Clientes criados</Text>
                 <FlatList
                     data={user}
                     keyExtractor={user => user.id}
                     renderItem={({ item }) => (
                         <><Text style={estilos.textoNome}>Nome: {item.name}</Text><Text style={estilos.textoEmail}>Email: {item.email}</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('InfoCliente', { id: item.id }, (console.log('aqui', InfoCliente)))}>
+                            <Text style={estilos.seguidoresTexto}>ver cliente</Text>
+                        </TouchableOpacity>
                         <TouchableOpacity onPress={() => navigation.navigate('Repositorios', { id: item.id }, (console.log('aqui', Repositorios)))}>
                             <Text style={estilos.seguidoresTexto}>ver status</Text>
                         </TouchableOpacity></>
                     )}
                 />
-
-        </View>
         </ScrollView>
+
+        </SafeAreaView>
+        
     );
 }

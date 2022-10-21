@@ -1,13 +1,23 @@
 import React from "react";
 import { View,TouchableOpacity, Text } from "react-native";
 import Usuarios from "../Clientes";
+import Principal from"../Principal"
 import CriarCliente from "../CriarCliente";
-import estilos from "../CriarRepositorio/estilos";
-import Principal from "../Principal";
+import estilos from "./estilos";
+import Cabecalho from '../../componentes/Cabecalho';
+import { auth } from '../../config/firebase';
+
 
 export default function Home({navigation}){
+  const usuario = auth.currentUser;
+  function deslogar(){
+    auth.signOut();
+    navigation.replace('Login');
+  }
     return <View style={estilos.container}>
-            <Text>Aqui</Text>
+            <Cabecalho logout={deslogar}>
+            <Text style={estilos.textoUser}>Usuário: {usuario.email}</Text>
+            </Cabecalho>
             <TouchableOpacity onPress={() => navigation.navigate('CriarCliente', (console.log('aqui', CriarCliente)))}
             style={estilos.botao}>
                 <Text style={estilos.textoBotao}>

@@ -24,10 +24,10 @@ export default function Principal({ navigation }) {
         <ScrollView>
             <View style={estilos.container}>
                 {
-                    usuario?.login &&
+                    usuario?.email &&
                 <>
-                    {/* <View style={estilos.fundo} />
-                    <View style={estilos.imagemArea}>
+                    <View style={estilos.fundo} />
+                    {/* <View style={estilos.imagemArea}>
                         <Image source={{ uri: usuario.avatar_url }} style={estilos.imagem} />
                     </View> */}
                     <Text style={estilos.textoNome}>{usuario.name}</Text>
