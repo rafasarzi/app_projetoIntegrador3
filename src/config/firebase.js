@@ -1,33 +1,32 @@
-
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { initializeAuth, getReactNativePersistence } from "firebase/auth/react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  API_KEY,
-  AUTH_DAMAIN,
-  PROJECT_ID,
-  STORAGE_BUCKET,
-  MESSAGING_SENDER_ID,
-  APP_ID,
-  MEASUREMENT_ID
-} from "@env"
+// import {
+//   API_KEY,
+//   AUTH_DOMAIN,
+//   PROJECT_ID,
+//   STORAGE_BUCKET,
+//   MESSAGING_SENDER_ID,
+//   APP_ID,
+//   MEASUREMENT_ID,
+// } from "react-native-dotenv"
+
 
 const firebaseConfig = {
-  apiKey:API_KEY,
-  authDomain:AUTH_DAMAIN,
-  projectId:PROJECT_ID,
-  storageBucket:STORAGE_BUCKET,
-  messagingSenderId:MESSAGING_SENDER_ID,
-  appId:APP_ID,
-  measurementId:MEASUREMENT_ID
+  apiKey: "AIzaSyBtHExpj4UkEo_OslNMcEn0FfAnJjV2x9I",
+  authDomain: "alura-esporte-f6641.firebaseapp.com",
+  projectId: "alura-esporte-f6641",
+  storageBucket: "alura-esporte-f6641.appspot.com",
+  messagingSenderId: "231746444950",
+  appId: "1:231746444950:web:ebeaaffb452ac702f06cb7",
+  measurementId: "G-EZEKBNPZGH"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
 const auth = initializeAuth(app, {
-    persistence: getReactNativePersistence(AsyncStorage)
+  persistence: getReactNativePersistence(AsyncStorage)
 })
 
-export { auth }
+export { auth }; 
